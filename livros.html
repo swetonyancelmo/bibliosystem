@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Livro — BiblioSystem</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/livros.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo">BiblioSystem</a>
+
+        <nav class="navbar__nav">
+            <a href="index.html"       class="navbar__link">Inicio</a>
+            <a href="livros.html"      class="navbar__link navbar__link--active">Livros</a>
+            <a href="emprestimos.html" class="navbar__link">Emprestimos</a>
+            <a href="reservas.html"    class="navbar__link">Reservas</a>
+        </nav>
+
+        <a href="perfil.html" class="navbar__avatar" aria-label="Perfil do usuário">
+            <img src="" alt="" class="navbar__avatar-img" id="avatarImg" />
+        </a>
+    </div>
+</header>
+
+<!-- CONTEÚDO DA PÁGINA -->
+<div class="page-content">
+<div class="container">
+
+    <h1>Adicionar Livro</h1>
+    <p class="subtitle">Preencha os dados para cadastrar um novo livro no acervo.</p>
+
+    <form id="formLivro">
+        <div class="card-body">
+
+            <!-- ── COLUNA ESQUERDA: PREVIEW ── -->
+            <div class="preview-col">
+
+                <!-- Capa -->
+                <div class="cover-preview" id="coverPreview">
+                    <img id="coverImg" src="" alt="Capa do livro">
+                    <div class="cover-placeholder" id="coverPlaceholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                            <rect x="3" y="2" width="14" height="20" rx="2"/>
+                            <path d="M7 6h6M7 10h6M7 14h4"/>
+                            <path d="M17 6l4 4-4 4" stroke-linecap="round"/>
+                        </svg>
+                        <span>Pré-visualização da capa</span>
+                        <span style="font-size:0.75rem;opacity:0.6">Cole a URL da imagem ao lado</span>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="status-selector">
+                    <label>Status de disponibilidade</label>
+                    <div class="status-options">
+                        <button type="button" class="status-btn active-disponivel" id="btnDisponivel"
+                                onclick="setStatus('disponivel')">✓ Disponível</button>
+                        <button type="button" class="status-btn" id="btnReservado"
+                                onclick="setStatus('reservado')">✗ Reservado</button>
+                    </div>
+                    <span class="badge-preview" id="badgePreview">Disponível</span>
+                </div>
+
+                <input type="hidden" id="status" value="disponivel">
+
+            </div>
+
+            <!-- ── COLUNA DIREITA: FORMULÁRIO ── -->
+            <div class="form-col">
+
+                <div class="form-group">
+                    <label for="titulo">Título do Livro</label>
+                    <input type="text" id="titulo" placeholder="Ex: Clean Code" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="autor">Autor</label>
+                    <input type="text" id="autor" placeholder="Ex: Robert C. Martin" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <input type="text" id="categoria" placeholder="Ex: Programação" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ano">Ano</label>
+                        <input type="number" id="ano" placeholder="Ex: 2008" min="1000" max="2099">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" id="isbn" placeholder="Ex: 978-0132350884">
+                </div>
+
+                <div class="form-group">
+                    <label for="imagem">URL da Capa</label>
+                    <input type="url" id="imagem" placeholder="https://..." required>
+                </div>
+
+                <hr class="divider">
+
+                <button type="submit" class="btn-submit">Adicionar Livro</button>
+
+            </div>
+        </div><!-- /card-body -->
+    </form>
+
+    <a href="index.html" class="back-link">← Voltar ao catálogo</a>
+
+</div><!-- /container -->
+</div><!-- /page-content -->
+
+<script>
+/* ── Preview da capa em tempo real ── */
+document.getElementById('imagem').addEventListener('input', function () {
+    const url = this.value.trim();
+    const img = document.getElementById('coverImg');
+    const placeholder = document.getElementById('coverPlaceholder');
+
+    if (url) {
+        img.src = url;
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+        img.onerror = () => {
+            img.style.display = 'none';
+            placeholder.style.display = 'flex';
+        };
+    } else {
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+    }
+});
+
+/* ── Seletor de status ── */
+function setStatus(valor) {
+    document.getElementById('status').value = valor;
+
+    const btnD = document.getElementById('btnDisponivel');
+    const btnR = document.getElementById('btnReservado');
+    const badge = document.getElementById('badgePreview');
+
+    btnD.className = 'status-btn' + (valor === 'disponivel' ? ' active-disponivel' : '');
+    btnR.className = 'status-btn' + (valor === 'reservado'  ? ' active-reservado'  : '');
+
+    badge.textContent = valor === 'disponivel' ? 'Disponível' : 'Reservado';
+    badge.className   = 'badge-preview' + (valor === 'reservado' ? ' reservado' : '');
+}
+
+/* ── Submit ── */
+document.getElementById('formLivro').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const novoLivro = {
+        titulo:    document.getElementById('titulo').value,
+        autor:     document.getElementById('autor').value,
+        categoria: document.getElementById('categoria').value,
+        ano:       document.getElementById('ano').value,
+        isbn:      document.getElementById('isbn').value,
+        imagem:    document.getElementById('imagem').value,
+        status:    document.getElementById('status').value,
+    };
+
+    let livros = JSON.parse(localStorage.getItem('livros')) || [];
+    livros.push(novoLivro);
+    localStorage.setItem('livros', JSON.stringify(livros));
+
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Livro adicionado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+    }).then(() => {
+        window.location.href = 'index.html';
+    });
+});
+</script>
+
+</body>
+</html>

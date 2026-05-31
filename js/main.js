@@ -1,8 +1,5 @@
 /* ============================================================
-   DADOS DOS LIVROS
-   Substitua estes dados pela sua API ou banco de dados.
-   Cada livro pode ter uma propriedade `coverUrl` com a URL
-   da imagem da capa.
+   DADOS FIXOS DOS LIVROS
    ============================================================ */
 const BOOKS = [
   {
@@ -138,9 +135,30 @@ const BOOKS = [
 ];
 
 /* ============================================================
-   ESTADO DA APLICAÇÃO
+   CARREGA LIVROS DO LOCALSTORAGE E MESCLA COM OS FIXOS
    ============================================================ */
-let currentBooks = [...BOOKS];
+function carregarLivrosDoStorage() {
+  const salvos = JSON.parse(localStorage.getItem('livros')) || [];
+
+  // Converte o formato do formulário para o formato dos cards
+  return salvos.map((livro, index) => ({
+    id:           `local-${index}`,
+    titulo:       livro.titulo    || 'Sem título',
+    autor:        livro.autor     || 'Autor desconhecido',
+    isbn:         livro.isbn      || '',
+    categoria:    livro.categoria || '',
+    disponivel:   livro.status !== 'reservado',
+    descricao:    livro.descricao || '',
+    coverUrl:     livro.imagem    || '',
+    linkEmprestar: '#',
+    linkReservar:  '#',
+    linkDetalhes:  '#',
+  }));
+}
+
+// Todos os livros = fixos + salvos pelo usuário
+const ALL_BOOKS = [...BOOKS, ...carregarLivrosDoStorage()];
+let currentBooks = [...ALL_BOOKS];
 let selectedCategory = '';
 
 /* ============================================================
@@ -171,8 +189,7 @@ function renderBooks(books) {
   booksCount.textContent = `${books.length} livro${books.length !== 1 ? 's' : ''} encontrado${books.length !== 1 ? 's' : ''}`;
 
   books.forEach(book => {
-    const card = buildCard(book);
-    booksGrid.appendChild(card);
+    booksGrid.appendChild(buildCard(book));
   });
 }
 
@@ -182,7 +199,7 @@ function buildCard(book) {
   card.dataset.id = book.id;
 
   const badgeClass = book.disponivel ? 'badge--disponivel' : 'badge--indisponivel';
-  const badgeText  = book.disponivel ? 'Disponivel' : 'Indisponivel';
+  const badgeText  = book.disponivel ? 'Disponível' : 'Indisponível';
   const actionBtn  = book.disponivel
     ? `<a href="${book.linkEmprestar}" class="btn btn--primary">Emprestar</a>`
     : `<a href="${book.linkReservar}"  class="btn btn--outline">Reservar</a>`;
@@ -224,12 +241,12 @@ function formatCategory(cat) {
 function filterBooks() {
   const query = searchInput.value.trim().toLowerCase();
 
-  currentBooks = BOOKS.filter(book => {
+  currentBooks = ALL_BOOKS.filter(book => {
     const matchCategory = !selectedCategory || book.categoria === selectedCategory;
     const matchQuery    = !query
       || book.titulo.toLowerCase().includes(query)
       || book.autor.toLowerCase().includes(query)
-      || book.isbn.includes(query);
+      || (book.isbn && book.isbn.includes(query));
     return matchCategory && matchQuery;
   });
 
@@ -270,5 +287,4 @@ categoryMenu.querySelectorAll('.dropdown__item').forEach(item => {
 /* ============================================================
    INICIALIZAÇÃO
    ============================================================ */
-renderBooks(BOOKS);
-console.log('Sistema de Biblioteca iniciado.');
+renderBooks(ALL_BOOKS);
