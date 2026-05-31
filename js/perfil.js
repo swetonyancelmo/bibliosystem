@@ -1,85 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiblioSystem — Perfil</title>
+// js/perfil.js
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/perfil.css">
-</head>
-<body>
+// Seleciona o botão "Salvar alterações"
+const btnSalvar = document.getElementById("btnSalvar");
 
-    <header class="navbar">
-        <div class="navbar__inner">
-            <a href="index.html" class="navbar__logo">BiblioSystem</a>
+// Adiciona evento de clique
+btnSalvar.addEventListener("click", () => {
+    // Pega os valores dos inputs
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value;
+    const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-            <nav class="navbar__nav">
-                <a href="index.html" class="navbar__link">Início</a>
-                <a href="livros.html" class="navbar__link">Livros</a>
-                <a href="emprestimos.html" class="navbar__link">Empréstimos</a>
-                <a href="reservas.html" class="navbar__link">Reservas</a>
-            </nav>
+    // Validação simples
+    if (!nome || !email) {
+        alert("Preencha o nome e o e-mail.");
+        return;
+    }
 
-            <a href="perfil.html" class="navbar__avatar">
-                <span style="color:white;font-weight:bold;">SA</span>
-            </a>
-        </div>
-    </header>
+    if (senha !== confirmarSenha) {
+        alert("As senhas não coincidem.");
+        return;
+    }
 
-    <main class="main">
-        <div class="main__inner">
+    // Aqui você poderia salvar os dados no servidor via fetch/AJAX
+    // Por enquanto, apenas alerta
+    alert("Alterações salvas com sucesso!\nNome: " + nome + "\nEmail: " + email);
 
-            <section class="perfil">
-
-                <div class="perfil__avatar">
-                    SA
-                </div>
-
-                <h1 class="perfil__nome">
-                    Swetony Ancelmo
-                </h1>
-
-                <p class="perfil__tipo">
-                    Usuário
-                </p>
-
-            </section>
-
-            <div class="perfil-card">
-
-                <h2>Editar dados pessoais</h2>
-
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" value="Swetony Ancelmo">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" value="swetony@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="senha">Nova senha</label>
-                    <input type="password" id="senha" placeholder="Digite uma nova senha">
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmarSenha">Confirmar senha</label>
-                    <input type="password" id="confirmarSenha" placeholder="Confirme a senha">
-                </div>
-
-                <button class="btn-salvar" id="btnSalvar">
-                    Salvar alterações
-                </button>
-
-            </div>
-
-        </div>
-    </main>
-
-    <script src="js/perfil.js"></script>
-
-</body>
-</html>
+    // Opcional: limpar campos de senha
+    document.getElementById("senha").value = "";
+    document.getElementById("confirmarSenha").value = "";
+});
