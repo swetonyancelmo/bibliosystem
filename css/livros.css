@@ -1,4 +1,14 @@
+/* =============================================
+   livros.css — estilos exclusivos de adicionar-livro.html
+   Reset, variáveis e navbar vêm do style.css
+   ============================================= */
 
+/* Navbar menor — remove o padding inferior extra do style.css */
+.navbar {
+    padding-bottom: 0;
+}
+
+/* Layout geral da página */
 body {
     background: var(--gray-100);
     min-height: 100vh;
@@ -224,6 +234,16 @@ input:focus, select:focus {
     box-shadow: 0 0 0 3px rgba(59,91,219,0.12);
 }
 
+/* ── FORM ACTIONS (botão + link agrupados) ───── */
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+/* ── SUBMIT BUTTON ───────────────────────────── */
 .btn-submit {
     width: 100%;
     height: 44px;
@@ -234,7 +254,6 @@ input:focus, select:focus {
     font-weight: 600;
     border: none;
     cursor: pointer;
-    margin-top: 8px;
     transition: background var(--transition), transform var(--transition);
     font-family: inherit;
 }
@@ -244,9 +263,6 @@ input:focus, select:focus {
 
 /* ── BACK LINK ───────────────────────────────── */
 .back-link {
-    display: block;
-    text-align: center;
-    margin-top: 18px;
     text-decoration: none;
     color: var(--blue-primary);
     font-size: 0.88rem;
