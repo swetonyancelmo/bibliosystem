@@ -1,0 +1,227 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --brand:      #3040D8;
+  --brand-dark: #2535BE;
+  --bg:         #F2F4F8;
+  --card-bg:    #FFFFFF;
+  --text-main:  #111827;
+  --text-muted: #6B7280;
+  --border:     #D1D5DB;
+  --radius:     10px;
+  --error:      #DC2626;
+  --shadow:     0 4px 24px rgba(0, 0, 0, .09);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* ── Page label ── */
+.page-label {
+  padding: 14px 24px 0;
+  font-size: .8rem;
+  color: var(--text-muted);
+  letter-spacing: .03em;
+}
+
+/* ── Wrapper ── */
+.cadastro-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 38px);
+  padding: 24px 16px;
+}
+
+/* ── Card ── */
+.form-container {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 48px 52px;
+  width: 100%;
+  max-width: 560px;
+  animation: fadeIn .3s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.form-title {
+  font-family: 'Lora', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.form-subtitle {
+  font-size: .875rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* ── Fields ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  font-size: .825rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.field-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: .875rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  background: #fff;
+}
+
+.field-group input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(48, 64, 216, .12);
+}
+
+.field-group input.input-error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, .1);
+}
+
+.field-group input::placeholder {
+  color: #B0B7C3;
+}
+
+/* ── Password wrapper ── */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  padding-right: 42px;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color .2s;
+}
+
+.toggle-pw:hover {
+  color: var(--brand);
+}
+
+/* ── Field error ── */
+.field-error {
+  font-size: .75rem;
+  color: var(--error);
+  min-height: 16px;
+}
+
+/* ── Submit button ── */
+.btn-criar {
+  width: 100%;
+  padding: 13px 0;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background .2s, transform .1s, opacity .2s;
+}
+
+.btn-criar:hover {
+  background: var(--brand-dark);
+}
+
+.btn-criar:active {
+  transform: scale(.98);
+}
+
+.btn-criar:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+/* ── Login link ── */
+.login-text {
+  text-align: center;
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+.login-link {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.login-link:hover {
+  opacity: .75;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #111;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: .85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 36px 24px;
+  }
+}

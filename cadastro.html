@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2 - Cadastro</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cadastro.css" />
+</head>
+<body>
+
+  <p class="page-label">2 - Cadastro</p>
+
+  <div class="cadastro-wrapper">
+    <div class="form-container">
+
+      <h2 class="form-title">Criar nova conta</h2>
+      <p class="form-subtitle">Preencha os dados para se cadastrar</p>
+
+      <form id="cadastroForm" novalidate>
+
+        <div class="field-group">
+          <label for="nome">Nome completo</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="João da Silva"
+            autocomplete="name"
+          />
+          <span class="field-error" id="nomeError"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="joao@email.com"
+            autocomplete="email"
+          />
+          <span class="field-error" id="emailError"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="senha">Senha</label>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-pw" id="toggleSenha" aria-label="Mostrar senha">
+              <svg class="eye-icon" id="eyeSenha" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <span class="field-error" id="senhaError"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="confirmar">Confirmar senha</label>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="confirmar"
+              name="confirmar"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-pw" id="toggleConfirmar" aria-label="Mostrar confirmação">
+              <svg class="eye-icon" id="eyeConfirmar" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <span class="field-error" id="confirmarError"></span>
+        </div>
+
+        <button type="submit" class="btn-criar" id="btnCriar">Criar conta</button>
+
+        <p class="login-text">
+          Já tem conta? <a href="login.html" class="login-link">Fazer login</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="cadastro.js"></script>
+</body>
+</html>

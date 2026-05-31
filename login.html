@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1 - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <p class="page-label">1 - Login</p>
+
+  <div class="login-wrapper">
+
+    <!-- Painel esquerdo -->
+    <aside class="side-panel">
+      <div class="side-content">
+        <div class="brand-logo">📚</div>
+        <h1 class="brand-name">BiblioSystem</h1>
+        <p class="brand-subtitle">Sua biblioteca digital sempre ao seu alcance.</p>
+
+        <ul class="feature-list">
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="none">
+              <polyline points="4 10 8 14 16 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Empréstimos e renovações online
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="none">
+              <polyline points="4 10 8 14 16 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Reservas e notificações
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 20 20" fill="none">
+              <polyline points="4 10 8 14 16 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Catálogo completo de livros
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Painel direito (formulário) -->
+    <main class="form-panel">
+      <div class="form-container">
+        <h2 class="form-title">Bem-vindo de volta</h2>
+        <p class="form-subtitle">Faça login para acessar sua conta</p>
+
+        <form id="loginForm" novalidate>
+
+          <div class="field-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+            />
+            <span class="field-error" id="emailError"></span>
+          </div>
+
+          <div class="field-group">
+            <label for="senha">Senha</label>
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Mostrar senha">
+                <svg id="eyeIcon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <span class="field-error" id="senhaError"></span>
+          </div>
+
+          <div class="forgot-row">
+            <a href="#" class="forgot-link">Esqueceu sua senha?</a>
+          </div>
+
+          <button type="submit" class="btn-entrar" id="btnEntrar">Entrar</button>
+
+          <p class="divider-text">ou</p>
+
+          <p class="register-text">
+            Não tem conta? <a href="#" class="register-link">Cadastre-se</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="login.js"></script>
+</body>
+</html>
