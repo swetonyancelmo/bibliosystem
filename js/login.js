@@ -1,3 +1,9 @@
+/* ── Usuários fixos do sistema ── */
+const USUARIOS_FIXOS = [
+  { email: 'usuario@email.com',      senha: '123456',   nome: 'Usuário Demo',  tipo: 'usuario' },
+  { email: 'admin@biblioteca.com',   senha: 'admin123', nome: 'Bibliotecário', tipo: 'bibliotecario' },
+];
+
 /* ── Elementos ── */
 const form       = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
@@ -40,7 +46,6 @@ senhaInput.addEventListener("blur", () => {
   setError(senhaInput, senhaError, validarSenha(senhaInput.value));
 });
 
-/* ── Limpar erro ao digitar ── */
 emailInput.addEventListener("input", () => {
   if (emailInput.classList.contains("input-error")) {
     setError(emailInput, emailError, validarEmail(emailInput.value));
@@ -58,7 +63,6 @@ togglePw.addEventListener("click", () => {
   const visivel = senhaInput.type === "text";
   senhaInput.type = visivel ? "password" : "text";
 
-  // Trocar ícone
   const eyeIcon = document.getElementById("eyeIcon");
   if (visivel) {
     eyeIcon.innerHTML = `
@@ -75,11 +79,17 @@ togglePw.addEventListener("click", () => {
   }
 });
 
-/* ── Toast ── */
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 3000);
+/* ── Toast via SweetAlert2 ── */
+const SwalToast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
+
+function showToast(msg, icone) {
+  SwalToast.fire({ icon: icone || 'info', title: msg });
 }
 
 /* ── Loading state ── */
@@ -101,25 +111,29 @@ form.addEventListener("submit", async (e) => {
   if (erroEmail || erroSenha) return;
 
   setLoading(true);
-
-  // Simula chamada de API (substituir pela requisição real)
-  await new Promise(resolve => setTimeout(resolve, 1500));
-
+  await new Promise(resolve => setTimeout(resolve, 1000));
   setLoading(false);
 
-  // Credenciais de teste
-  const emailValido = "usuario@email.com";
-  const senhaValida = "123456";
+  // Verifica usuários fixos e também usuários cadastrados
+  const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios')) || [];
+  const todosUsuarios  = [...USUARIOS_FIXOS, ...usuariosSalvos];
 
-  if (emailInput.value === emailValido && senhaInput.value === senhaValida) {
-    showToast("✅ Login realizado com sucesso!");
+  const usuario = todosUsuarios.find(
+    u => u.email === emailInput.value && u.senha === senhaInput.value
+  );
+
+  if (usuario) {
+    localStorage.setItem('usuarioLogado', JSON.stringify({
+      nome:  usuario.nome,
+      email: usuario.email,
+      tipo:  usuario.tipo,
+    }));
+    showToast("Login realizado com sucesso!", "success");
     setTimeout(() => {
-      // Redirecionar para a tela de catálogo
-      // window.location.href = "index.html";
-      showToast("🔀 Redirecionando para o catálogo...");
-    }, 1500);
+      window.location.href = "index.html";
+    }, 1000);
   } else {
-    showToast("❌ E-mail ou senha incorretos.");
+    showToast("E-mail ou senha incorretos.", "error");
     setError(emailInput, emailError, " ");
     setError(senhaInput, senhaError, "Verifique seus dados e tente novamente.");
   }

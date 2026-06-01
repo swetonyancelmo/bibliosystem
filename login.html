@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1 - Login</title>
+  <title>Login | BiblioSystem</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
-  <p class="page-label">1 - Login</p>
 
   <div class="login-wrapper">
 
@@ -92,7 +91,7 @@
           <p class="divider-text">ou</p>
 
           <p class="register-text">
-            Não tem conta? <a href="#" class="register-link">Cadastre-se</a>
+            Não tem conta? <a href="cadastro.html" class="register-link">Cadastre-se</a>
           </p>
         </form>
       </div>
@@ -100,8 +99,8 @@
 
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" style="display:none"></div>
 
-  <script src="login.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>

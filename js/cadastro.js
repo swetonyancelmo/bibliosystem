@@ -109,11 +109,17 @@ function criarToggle(btnId, inputEl, iconId) {
 criarToggle("toggleSenha",    senhaInput,    "eyeSenha");
 criarToggle("toggleConfirmar", confirmarInput, "eyeConfirmar");
 
-/* ── Toast ── */
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 3000);
+/* ── Toast via SweetAlert2 ── */
+const SwalToast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
+
+function showToast(msg, icone) {
+  SwalToast.fire({ icon: icone || 'info', title: msg });
 }
 
 /* ── Loading state ── */
@@ -142,16 +148,21 @@ form.addEventListener("submit", async (e) => {
   if (temErro) return;
 
   setLoading(true);
-
-  // Simula chamada de API (substituir pela requisição real)
-  await new Promise(resolve => setTimeout(resolve, 1500));
-
+  await new Promise(resolve => setTimeout(resolve, 1000));
   setLoading(false);
-  showToast("✅ Conta criada com sucesso!");
 
+  // Salva o novo usuário no localStorage
+  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  usuarios.push({
+    nome:  nomeInput.value.trim(),
+    email: emailInput.value.trim(),
+    senha: senhaInput.value,
+    tipo:  'usuario',
+  });
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+  showToast("Conta criada com sucesso!", "success");
   setTimeout(() => {
-    // Redirecionar para login após cadastro
-    // window.location.href = "login.html";
-    showToast("🔀 Redirecionando para o login...");
-  }, 1500);
+    window.location.href = "login.html";
+  }, 1200);
 });
