@@ -14,15 +14,13 @@
       <a href="index.html" class="navbar__logo">BiblioSystem</a>
 
       <nav class="navbar__nav">
-        <a href="index.html"        class="navbar__link navbar__link--active">Inicio</a>
-        <a href="livros.html"       class="navbar__link">Livros</a>
-        <a href="emprestimos.html"  class="navbar__link">Emprestimos</a>
-        <a href="reservas.html"     class="navbar__link">Reservas</a>
+        <a href="index.html"        class="navbar__link navbar__link--active">Início</a>
+        <a href="emprestimos.html"  class="navbar__link">Empréstimos</a>
+        <a href="livros.html"       class="navbar__link" id="navLivros" style="display:none">Livros</a>
+        <a href="admin.html"        class="navbar__link" id="navAdmin"  style="display:none">Admin</a>
       </nav>
 
-      <a href="perfil.html" class="navbar__avatar" aria-label="Perfil do usuário">
-        <img src="" alt="" class="navbar__avatar-img" id="avatarImg" />
-      </a>
+      <a href="perfil.html" class="navbar__avatar" id="navAvatar" aria-label="Perfil do usuário"></a>
     </div>
 
     <!-- SEARCH BAR -->
@@ -78,7 +76,8 @@
     </div>
   </main>
 
-
-<script src="js/main.js"></script>
+  <script src="js/livros-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/navbar.js"></script>
 </body>
 </html>
