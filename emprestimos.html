@@ -1,55 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BiblioSystem — Meus Empréstimos</title>
-
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/emprestimos.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimos — BiblioSystem</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/emprestimos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
 <header class="navbar">
-  <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">BiblioSystem</a>
-
-    <nav class="navbar__nav">
-      <a href="index.html" class="navbar__link">Início</a>
-      <a href="livros.html" class="navbar__link">Livros</a>
-      <a href="emprestimos.html" class="navbar_link navbar_link--active">Empréstimos</a>
-      <a href="perfil.html" class="navbar__link">Perfil</a>
-    </nav>
-  </div>
+    <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo">BiblioSystem</a>
+        <nav class="navbar__nav">
+            <a href="index.html"       class="navbar__link">Início</a>
+            <a href="emprestimos.html" class="navbar__link navbar__link--active">Empréstimos</a>
+            <a href="livros.html"      class="navbar__link" id="navLivros" style="display:none">Livros</a>
+            <a href="admin.html"       class="navbar__link" id="navAdmin"  style="display:none">Admin</a>
+        </nav>
+        <a href="perfil.html" class="navbar__avatar" id="navAvatar" aria-label="Perfil do usuário"></a>
+    </div>
 </header>
 
-<main class="emprestimos-main">
-  <div class="emprestimos-container">
+<main class="main">
+    <div class="main__inner">
 
-    <div class="emprestimos-header">
-      <h1>Meus Empréstimos</h1>
-      <p>Acompanhe seus livros emprestados e datas de devolução.</p>
+        <div class="page-header">
+            <h1>Meus Empréstimos</h1>
+            <p>Acompanhe suas solicitações e empréstimos</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pendentes">
+                Pendentes (<span id="count-pendentes">0</span>)
+            </button>
+            <button class="tab-btn" data-tab="ativos">
+                Ativos (<span id="count-ativos">0</span>)
+            </button>
+            <button class="tab-btn" data-tab="historico">Histórico</button>
+        </div>
+
+        <!-- Pendentes -->
+        <div class="tab-panel active" id="tab-pendentes">
+            <div class="card">
+                <table class="emprestimos-table">
+                    <thead>
+                        <tr>
+                            <th>Livro</th>
+                            <th>Solicitação</th>
+                            <th>Devolução Prevista</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-pendentes"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ativos -->
+        <div class="tab-panel" id="tab-ativos">
+            <div class="card">
+                <table class="emprestimos-table">
+                    <thead>
+                        <tr>
+                            <th>Livro</th>
+                            <th>Aprovado em</th>
+                            <th>Devolução</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-ativos"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Histórico -->
+        <div class="tab-panel" id="tab-historico">
+            <div class="card">
+                <table class="emprestimos-table">
+                    <thead>
+                        <tr>
+                            <th>Livro</th>
+                            <th>Solicitação</th>
+                            <th>Devolução</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-historico"></tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
-
-    <div class="alerta" id="alertaAtraso">
-      <span>⚠️ Você possui empréstimos próximos do vencimento.</span>
-      <button id="btnRenovarTodos">Renovar Todos</button>
-    </div>
-
-    <div id="listaEmprestimos" class="lista-emprestimos"></div>
-
-    <div id="estadoVazio" class="estado-vazio" hidden>
-      <h3>Nenhum empréstimo ativo</h3>
-      <p>Você não possui livros emprestados no momento.</p>
-      <a href="livros.html" class="btn-voltar">Explorar Livros</a>
-    </div>
-
-  </div>
 </main>
 
 <script src="js/emprestimos.js"></script>
+<script src="js/navbar.js"></script>
 
 </body>
 </html>

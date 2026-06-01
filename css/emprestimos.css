@@ -1,196 +1,188 @@
-.emprestimos-main{
-    padding:40px 24px 60px;
+.main {
+    padding: 30px 24px;
+    background: #f1f5f9;
+    min-height: calc(100vh - 64px);
 }
 
-.emprestimos-container{
-    max-width:1200px;
-    margin:auto;
+.main__inner {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.emprestimos-header{
-    margin-bottom:24px;
+.page-header {
+    margin-bottom: 24px;
 }
 
-.emprestimos-header h1{
-    font-size:1.8rem;
-    font-weight:700;
-    color:var(--gray-900);
-    margin-bottom:6px;
+.page-header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: #0f172a;
 }
 
-.emprestimos-header p{
-    color:var(--gray-400);
+.page-header p {
+    color: #94a3b8;
 }
 
-.alerta{
-    background:#EEF1FF;
-    border-left:5px solid var(--blue-primary);
-    border-radius:16px;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:28px;
-    box-shadow:var(--shadow-sm);
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
-.alerta button{
-    background:var(--blue-primary);
-    color:#fff;
-    padding:12px 20px;
-    border-radius:8px;
-    font-weight:600;
-    transition:all .2s ease;
+.tab-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid #d1d5db;
+    background: white;
+    color: #374151;
+    transition: all 0.15s;
 }
 
-.alerta button:hover{
-    background:var(--blue-dark);
+.tab-btn:hover {
+    border-color: #3B4DC8;
+    color: #3B4DC8;
 }
 
-.lista-emprestimos{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+.tab-btn.active {
+    background: #3B4DC8;
+    color: white;
+    border-color: #3B4DC8;
 }
 
-.card-emprestimo{
-    background:#fff;
-    border-radius:18px;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    box-shadow:var(--shadow-md);
-    transition:all .25s ease;
+/* Table card */
+.card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
 }
 
-.card-emprestimo:hover{
-    transform:translateY(-4px);
-    box-shadow:0 14px 32px rgba(0,0,0,.12);
+.emprestimos-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.livro-info{
-    display:flex;
-    align-items:center;
-    gap:18px;
+.emprestimos-table thead tr {
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.capa{
-    width:75px;
-    height:110px;
-    object-fit:cover;
-    border-radius:10px;
-    background:#e2e8f0;
+.emprestimos-table th {
+    text-align: left;
+    padding: 14px 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-.livro-dados h3{
-    color:var(--gray-900);
-    margin-bottom:8px;
+.emprestimos-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.1s;
 }
 
-.livro-dados p{
-    color:var(--gray-600);
-    margin:4px 0;
-    font-size:.92rem;
+.emprestimos-table tbody tr:last-child {
+    border-bottom: none;
 }
 
-.badge{
-    padding:6px 12px;
-    border-radius:999px;
-    font-size:.8rem;
-    font-weight:600;
+.emprestimos-table tbody tr:hover {
+    background: #f8fafc;
 }
 
-.badge-em-dia{
-    background:var(--green-bg);
-    color:var(--green-text);
+.emprestimos-table td {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    vertical-align: middle;
 }
 
-.badge-atrasado{
-    background:var(--red-bg);
-    color:var(--red-text);
+/* Status badges */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
-.acoes{
-    display:flex;
-    gap:10px;
+.badge--ativo {
+    background: #dcfce7;
+    color: #16a34a;
 }
 
-.btn-renovar{
-    background:var(--blue-primary);
-    color:#fff;
-    padding:10px 16px;
-    border-radius:8px;
-    font-weight:600;
-    transition:.2s;
+.badge--atrasado {
+    background: #fee2e2;
+    color: #dc2626;
 }
 
-.btn-renovar:hover{
-    background:var(--blue-dark);
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: #94a3b8;
 }
 
-.btn-devolver{
-    background:var(--red-text);
-    color:#fff;
-    padding:10px 16px;
-    border-radius:8px;
-    font-weight:600;
-    transition:.2s;
+.empty-state p {
+    font-size: 1rem;
+    margin-top: 8px;
 }
 
-.btn-devolver:hover{
-    background:#b91c1c;
+/* Hidden tab panels */
+.tab-panel {
+    display: none;
 }
 
-.estado-vazio{
-    background:#fff;
-    border-radius:18px;
-    padding:60px 20px;
-    text-align:center;
-    box-shadow:var(--shadow-md);
+.tab-panel.active {
+    display: block;
 }
 
-.estado-vazio h2{
-    margin-bottom:10px;
+/* Status de histórico */
+.badge--devolvido {
+    background: #f1f5f9;
+    color: #64748b;
 }
 
-.estado-vazio p{
-    color:var(--gray-400);
+.badge--pendente {
+    background: #fef3c7;
+    color: #92400e;
 }
 
-.btn-voltar{
-    display:inline-block;
-    margin-top:18px;
-    background:var(--blue-primary);
-    color:#fff;
-    padding:12px 22px;
-    border-radius:8px;
-    transition:.2s;
+.badge--rejeitado {
+    background: #fee2e2;
+    color: #dc2626;
 }
 
-.btn-voltar:hover{
-    background:var(--blue-dark);
-}
-
-@media(max-width:768px){
-
-    .card-emprestimo{
-        flex-direction:column;
-        align-items:flex-start;
+@media (max-width: 768px) {
+    .emprestimos-table thead {
+        display: none;
     }
 
-    .acoes{
-        width:100%;
+    .emprestimos-table tbody tr {
+        display: block;
+        padding: 16px 20px;
     }
 
-    .acoes button{
-        flex:1;
+    .emprestimos-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border: none;
     }
 
-    .alerta{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:12px;
+    .emprestimos-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
     }
 }

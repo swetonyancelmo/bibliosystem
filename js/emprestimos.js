@@ -1,142 +1,120 @@
-let emprestimos = [
-{
-    id:1,
-    titulo:"Design Patterns",
-    autor:"Gang of Four",
-    capa:"https://m.media-amazon.com/images/I/81gtKoapHFL.jpg",
-    emprestimo:"10/05/2026",
-    devolucao:"10/06/2026",
-    status:"Em dia"
-},
-{
-    id:2,
-    titulo:"Código Limpo",
-    autor:"Robert C. Martin",
-    capa:"https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg",
-    emprestimo:"01/05/2026",
-    devolucao:"20/05/2026",
-    status:"Atrasado"
-},
-{
-    id:3,
-    titulo:"O Hobbit",
-    autor:"J.R.R. Tolkien",
-    capa:"https://m.media-amazon.com/images/I/91M9xPIf10L.jpg",
-    emprestimo:"15/05/2026",
-    devolucao:"15/06/2026",
-    status:"Em dia"
+/* ============================================================
+   MEUS EMPRÉSTIMOS — lê dados do localStorage
+   ============================================================ */
+
+function getEmprestimosDoUsuario() {
+    var user = JSON.parse(localStorage.getItem('usuarioLogado'));
+    var todos = JSON.parse(localStorage.getItem('emprestimos')) || [];
+
+    if (!user) return [];
+
+    // Filtra apenas os empréstimos do usuário logado
+    return todos.filter(function (e) {
+        return e.usuarioNome === user.nome;
+    });
 }
-];
 
-const lista = document.getElementById("listaEmprestimos");
-const vazio = document.getElementById("estadoVazio");
+function statusBadge(status) {
+    var map = {
+        'pendente':  'badge--pendente',
+        'ativo':     'badge--ativo',
+        'devolvido': 'badge--devolvido',
+        'rejeitado': 'badge--rejeitado',
+    };
+    var textos = {
+        'pendente':  'Pendente',
+        'ativo':     'Ativo',
+        'devolvido': 'Devolvido',
+        'rejeitado': 'Rejeitado',
+    };
+    return '<span class="badge ' + (map[status] || '') + '">' + (textos[status] || status) + '</span>';
+}
 
-function renderizar(){
+function renderPendentes() {
+    var todos     = getEmprestimosDoUsuario();
+    var pendentes = todos.filter(function (e) { return e.status === 'pendente'; });
+    var tbody     = document.getElementById('tbody-pendentes');
+    var counter   = document.getElementById('count-pendentes');
 
-    lista.innerHTML = "";
+    counter.textContent = pendentes.length;
 
-    if(emprestimos.length === 0){
-        vazio.hidden = false;
+    if (pendentes.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state"><p>Nenhuma solicitação pendente.</p></div></td></tr>';
         return;
     }
 
-    vazio.hidden = true;
-
-    emprestimos.forEach(livro => {
-
-        const card = document.createElement("div");
-        card.className = "card-emprestimos";
-
-        card.innerHTML = `
-            <div class="livro-info">
-
-                <img src="${livro.capa}" class="capa" alt="${livro.titulo}">
-
-                <div class="livro-dados">
-                    <h3>${livro.titulo}</h3>
-                    <p>${livro.autor}</p>
-                    <p>Empréstimo: ${livro.emprestimos}</p>
-                    <p>Devolução: ${livro.devolucao}</p>
-
-                    <span class="badge ${
-                        livro.status === "Atrasado"
-                        ? "badge-atrasado"
-                        : "badge-em-dia"
-                    }">
-                        ${livro.status}
-                    </span>
-                </div>
-
-            </div>
-
-            <div class="acoes">
-                <button class="btn-renovar">
-                    Renovar
-                </button>
-
-                <button class="btn-devolver">
-                    Devolver
-                </button>
-            </div>
-        `;
-
-        card.querySelector(".btn-renovar")
-        .addEventListener("click", () => {
-
-            Swal.fire({
-                icon:"success",
-                title:"Empréstimo renovado!",
-                text: `${livro.titulo} foi renovado por mais 15 dias.`
-            });
-
-        });
-
-        card.querySelector(".btn-devolver")
-        .addEventListener("click", () => {
-
-            Swal.fire({
-                title:"Devolver livro?",
-                text: `Deseja devolver "${livro.titulo}"?`,
-                icon:"question",
-                showCancelButton:true,
-                confirmButtonText:"Sim",
-                cancelButtonText:"Cancelar"
-            }).then(result => {
-
-                if(result.isConfirmed){
-
-                    emprestimos =
-                    emprestimos.filter(
-                        item => item.id !== livro.id
-                    );
-
-                    renderizar();
-
-                    Swal.fire(
-                        "Devolvido!",
-                        "Livro devolvido com sucesso.",
-                        "success"
-                    );
-                }
-            });
-
-        });
-
-        lista.appendChild(card);
-
-    });
-
+    tbody.innerHTML = pendentes.map(function (e) {
+        return [
+            '<tr>',
+            '  <td data-label="Livro">' + e.livroTitulo + '</td>',
+            '  <td data-label="Solicitação">' + e.dataSolicitacao + '</td>',
+            '  <td data-label="Devolução Prevista">' + e.dataDevolucao + '</td>',
+            '  <td data-label="Status">' + statusBadge(e.status) + '</td>',
+            '</tr>',
+        ].join('\n');
+    }).join('');
 }
 
-document.getElementById("btnRenovarTodos")
-.addEventListener("click", () => {
+function renderAtivos() {
+    var todos   = getEmprestimosDoUsuario();
+    var ativos  = todos.filter(function (e) { return e.status === 'ativo'; });
+    var tbody   = document.getElementById('tbody-ativos');
+    var counter = document.getElementById('count-ativos');
 
-    Swal.fire({
-        icon:"success",
-        title:"Renovação concluída!",
-        text:"Todos os empréstimos elegíveis foram renovados."
+    counter.textContent = ativos.length;
+
+    if (ativos.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state"><p>Nenhum empréstimo ativo.</p></div></td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = ativos.map(function (e) {
+        return [
+            '<tr>',
+            '  <td data-label="Livro">' + e.livroTitulo + '</td>',
+            '  <td data-label="Aprovado em">' + (e.dataAprovacao || e.dataSolicitacao) + '</td>',
+            '  <td data-label="Devolução">' + e.dataDevolucao + '</td>',
+            '  <td data-label="Status">' + statusBadge(e.status) + '</td>',
+            '</tr>',
+        ].join('\n');
+    }).join('');
+}
+
+function renderHistorico() {
+    var todos     = getEmprestimosDoUsuario();
+    var historico = todos.filter(function (e) {
+        return e.status === 'devolvido' || e.status === 'rejeitado';
     });
+    var tbody = document.getElementById('tbody-historico');
 
+    if (historico.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state"><p>Nenhum empréstimo no histórico.</p></div></td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = historico.map(function (e) {
+        return [
+            '<tr>',
+            '  <td data-label="Livro">' + e.livroTitulo + '</td>',
+            '  <td data-label="Solicitação">' + e.dataSolicitacao + '</td>',
+            '  <td data-label="Devolução">' + e.dataDevolucao + '</td>',
+            '  <td data-label="Status">' + statusBadge(e.status) + '</td>',
+            '</tr>',
+        ].join('\n');
+    }).join('');
+}
+
+/* ── Troca de tabs ── */
+document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
 });
 
-renderizar();
+/* ── Inicializa ── */
+renderPendentes();
+renderAtivos();
+renderHistorico();
