@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioSystem — Meus Empréstimos</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/emprestimo.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">BiblioSystem</a>
+
+    <nav class="navbar__nav">
+      <a href="index.html" class="navbar__link">Início</a>
+      <a href="livros.html" class="navbar__link">Livros</a>
+      <a href="emprestimo.html" class="navbar_link navbar_link--active">Empréstimos</a>
+      <a href="perfil.html" class="navbar__link">Perfil</a>
+    </nav>
+  </div>
+</header>
+
+<main class="emprestimos-main">
+  <div class="emprestimos-container">
+
+    <div class="emprestimos-header">
+      <h1>Meus Empréstimos</h1>
+      <p>Acompanhe seus livros emprestados e datas de devolução.</p>
+    </div>
+
+    <div class="alerta" id="alertaAtraso">
+      <span>⚠️ Você possui empréstimos próximos do vencimento.</span>
+      <button id="btnRenovarTodos">Renovar Todos</button>
+    </div>
+
+    <div id="listaEmprestimos" class="lista-emprestimos"></div>
+
+    <div id="estadoVazio" class="estado-vazio" hidden>
+      <h3>Nenhum empréstimo ativo</h3>
+      <p>Você não possui livros emprestados no momento.</p>
+      <a href="livros.html" class="btn-voltar">Explorar Livros</a>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/emprestimo.js"></script>
+
+</body>
+</html>
