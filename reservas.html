@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - BiblioSystem</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reservas.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar__inner">
+
+        <a href="index.html" class="navbar__logo">
+            BiblioSystem
+        </a>
+
+        <nav class="navbar__nav">
+            <a href="index.html" class="navbar__link">Início</a>
+            <a href="livros.html" class="navbar__link">Livros</a>
+            <a href="emprestimos.html" class="navbar__link">Emprestimos</a>
+            <a href="reservas.html" class="navbar__link navbar__link--active">Reservas</a>
+        </nav>
+
+        <div class="navbar__avatar"></div>
+
+    </div>
+</header>
+
+<main class="main">
+    <div class="main__inner">
+
+        <div class="page-header">
+            <h1>Minhas Reservas</h1>
+            <p>Livros reservados - você será notificado quando ficarem disponíveis</p>
+        </div>
+
+        <div class="alerta-disponivel">
+
+            <div class="alerta-texto">
+                <strong>"Design Patterns"</strong> ficou disponível!
+                Você tem 24h para realizar o empréstimo.
+            </div>
+
+            <button class="btn-emprestar">
+                Solicitar empréstimo
+            </button>
+
+        </div>
+
+        <section class="reservas-list">
+
+            <div class="reserva-item">
+
+                <div class="reserva-livro">
+
+                    <div class="capa-placeholder"></div>
+
+                    <div class="livro-info">
+                        <h3>Design Patterns</h3>
+                        <p>Gang of Four</p>
+                        <span>Reservado em: 20/04/2026</span>
+                    </div>
+
+                </div>
+
+                <div class="status disponivel">
+                    Disponível
+                </div>
+
+                <button class="btn-outline">
+                    Cancelar reserva
+                </button>
+
+            </div>
+
+            <div class="reserva-item">
+
+                <div class="reserva-livro">
+
+                    <div class="capa-placeholder"></div>
+
+                    <div class="livro-info">
+                        <h3>O Hobbit</h3>
+                        <p>J.R.R. Tolkien</p>
+                        <span>Reservado em: 05/05/2026</span>
+                    </div>
+
+                </div>
+
+                <div class="status fila">
+                    Na fila
+                </div>
+
+                <button class="btn-outline">
+                    Cancelar reserva
+                </button>
+
+            </div>
+
+            <div class="reserva-item">
+
+                <div class="reserva-livro">
+
+                    <div class="capa-placeholder"></div>
+
+                    <div class="livro-info">
+                        <h3>Código Limpo</h3>
+                        <p>Robert C. Martin</p>
+                        <span>Reservado em: 12/05/2026</span>
+                    </div>
+
+                </div>
+
+                <div class="status fila">
+                    Na fila
+                </div>
+
+                <button class="btn-outline">
+                    Cancelar reserva
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+<script src="js/reservas.js"></script>
+
+</body>
+</html>
