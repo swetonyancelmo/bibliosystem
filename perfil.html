@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/perfil.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -15,15 +16,13 @@
             <a href="index.html" class="navbar__logo">BiblioSystem</a>
 
             <nav class="navbar__nav">
-                <a href="index.html" class="navbar__link">Início</a>
-                <a href="livros.html" class="navbar__link">Livros</a>
+                <a href="index.html"       class="navbar__link">Início</a>
                 <a href="emprestimos.html" class="navbar__link">Empréstimos</a>
-                <a href="reservas.html" class="navbar__link">Reservas</a>
+                <a href="livros.html"      class="navbar__link" id="navLivros" style="display:none">Livros</a>
+                <a href="admin.html"       class="navbar__link" id="navAdmin"  style="display:none">Admin</a>
             </nav>
 
-            <a href="perfil.html" class="navbar__avatar">
-                <span style="color:white;font-weight:bold;">SA</span>
-            </a>
+            <a href="perfil.html" class="navbar__avatar navbar__link--active" id="navAvatar" aria-label="Perfil do usuário"></a>
         </div>
     </header>
 
@@ -31,19 +30,9 @@
         <div class="main__inner">
 
             <section class="perfil">
-
-                <div class="perfil__avatar">
-                    SA
-                </div>
-
-                <h1 class="perfil__nome">
-                    Swetony Ancelmo
-                </h1>
-
-                <p class="perfil__tipo">
-                    Usuário
-                </p>
-
+                <div class="perfil__avatar" id="perfilAvatar">?</div>
+                <h1 class="perfil__nome" id="perfilNome">—</h1>
+                <p class="perfil__tipo" id="perfilTipo">—</p>
             </section>
 
             <div class="perfil-card">
@@ -52,12 +41,12 @@
 
                 <div class="form-group">
                     <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" value="Swetony Ancelmo">
+                    <input type="text" id="nome" placeholder="Seu nome completo">
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" value="swetony@email.com">
+                    <input type="email" id="email" placeholder="seu@email.com">
                 </div>
 
                 <div class="form-group">
@@ -74,12 +63,15 @@
                     Salvar alterações
                 </button>
 
+                <a href="login.html" id="btnSair" class="btn-sair">Sair da conta</a>
+
             </div>
 
         </div>
     </main>
 
     <script src="js/perfil.js"></script>
+    <script src="js/navbar.js"></script>
 
 </body>
 </html>
