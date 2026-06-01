@@ -1,0 +1,196 @@
+.emprestimos-main{
+    padding:40px 24px 60px;
+}
+
+.emprestimos-container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.emprestimos-header{
+    margin-bottom:24px;
+}
+
+.emprestimos-header h1{
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--gray-900);
+    margin-bottom:6px;
+}
+
+.emprestimos-header p{
+    color:var(--gray-400);
+}
+
+.alerta{
+    background:#EEF1FF;
+    border-left:5px solid var(--blue-primary);
+    border-radius:16px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+    box-shadow:var(--shadow-sm);
+}
+
+.alerta button{
+    background:var(--blue-primary);
+    color:#fff;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:600;
+    transition:all .2s ease;
+}
+
+.alerta button:hover{
+    background:var(--blue-dark);
+}
+
+.lista-emprestimos{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.card-emprestimo{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    box-shadow:var(--shadow-md);
+    transition:all .25s ease;
+}
+
+.card-emprestimo:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 32px rgba(0,0,0,.12);
+}
+
+.livro-info{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.capa{
+    width:75px;
+    height:110px;
+    object-fit:cover;
+    border-radius:10px;
+    background:#e2e8f0;
+}
+
+.livro-dados h3{
+    color:var(--gray-900);
+    margin-bottom:8px;
+}
+
+.livro-dados p{
+    color:var(--gray-600);
+    margin:4px 0;
+    font-size:.92rem;
+}
+
+.badge{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.badge-em-dia{
+    background:var(--green-bg);
+    color:var(--green-text);
+}
+
+.badge-atrasado{
+    background:var(--red-bg);
+    color:var(--red-text);
+}
+
+.acoes{
+    display:flex;
+    gap:10px;
+}
+
+.btn-renovar{
+    background:var(--blue-primary);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn-renovar:hover{
+    background:var(--blue-dark);
+}
+
+.btn-devolver{
+    background:var(--red-text);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn-devolver:hover{
+    background:#b91c1c;
+}
+
+.estado-vazio{
+    background:#fff;
+    border-radius:18px;
+    padding:60px 20px;
+    text-align:center;
+    box-shadow:var(--shadow-md);
+}
+
+.estado-vazio h2{
+    margin-bottom:10px;
+}
+
+.estado-vazio p{
+    color:var(--gray-400);
+}
+
+.btn-voltar{
+    display:inline-block;
+    margin-top:18px;
+    background:var(--blue-primary);
+    color:#fff;
+    padding:12px 22px;
+    border-radius:8px;
+    transition:.2s;
+}
+
+.btn-voltar:hover{
+    background:var(--blue-dark);
+}
+
+@media(max-width:768px){
+
+    .card-emprestimo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .acoes{
+        width:100%;
+    }
+
+    .acoes button{
+        flex:1;
+    }
+
+    .alerta{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+}

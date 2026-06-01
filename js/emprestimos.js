@@ -45,7 +45,7 @@ function renderizar(){
     emprestimos.forEach(livro => {
 
         const card = document.createElement("div");
-        card.className = "card-emprestimo";
+        card.className = "card-emprestimos";
 
         card.innerHTML = `
             <div class="livro-info">
@@ -55,7 +55,7 @@ function renderizar(){
                 <div class="livro-dados">
                     <h3>${livro.titulo}</h3>
                     <p>${livro.autor}</p>
-                    <p>Empréstimo: ${livro.emprestimo}</p>
+                    <p>Empréstimo: ${livro.emprestimos}</p>
                     <p>Devolução: ${livro.devolucao}</p>
 
                     <span class="badge ${
