@@ -10,7 +10,7 @@ const BOOKS = [
     categoria: 'Programacao',
     disponivel: true,
     descricao: 'Um guia essencial sobre como escrever código limpo, legível e de fácil manutenção para programadores de todas as experiências.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/41MigGXVuiL._SY445_SX342_ML2_.jpg',
     linkEmprestar: 'emprestimo.html?id=1',
     linkReservar: 'reserva.html?id=1',
     linkDetalhes: 'livro.html?id=1',
@@ -23,7 +23,7 @@ const BOOKS = [
     categoria: 'Ficcao',
     disponivel: true,
     descricao: 'A épica jornada de Frodo Bolseiro para destruir o Um Anel e salvar a Terra-média das trevas de Sauron.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/81hCVEC0ExL._SY522_.jpg',
     linkEmprestar: 'emprestimo.html?id=2',
     linkReservar: 'reserva.html?id=2',
     linkDetalhes: 'livro.html?id=2',
@@ -36,7 +36,7 @@ const BOOKS = [
     categoria: 'Literatura',
     disponivel: false,
     descricao: 'Um clássico da literatura brasileira que narra a história de Bentinho e Capitu, repleta de ambiguidade e ciúmes.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/61x1ZHomWUL._SY522_.jpg',
     linkEmprestar: 'emprestimo.html?id=3',
     linkReservar: 'reserva.html?id=3',
     linkDetalhes: 'livro.html?id=3',
@@ -49,7 +49,7 @@ const BOOKS = [
     categoria: 'Historia',
     disponivel: true,
     descricao: 'Uma breve história da humanidade que explora como o Homo sapiens veio a dominar a Terra em apenas alguns milênios.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/71-ghLb8qML._SY522_.jpg',
     linkEmprestar: 'emprestimo.html?id=4',
     linkReservar: 'reserva.html?id=4',
     linkDetalhes: 'livro.html?id=4',
@@ -62,7 +62,7 @@ const BOOKS = [
     categoria: 'Programacao',
     disponivel: false,
     descricao: 'O livro definitivo sobre padrões de projeto de software reutilizáveis orientados a objetos.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/81IGFC6oFmL._SY466_.jpg',
     linkEmprestar: 'emprestimo.html?id=5',
     linkReservar: 'reserva.html?id=5',
     linkDetalhes: 'livro.html?id=5',
@@ -75,7 +75,7 @@ const BOOKS = [
     categoria: 'Ficcao',
     disponivel: true,
     descricao: 'A história de Santiago, um jovem pastor que parte em busca de um tesouro, numa viagem de autodescoberta.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/81slUinjTlS._SY522_.jpg',
     linkEmprestar: 'emprestimo.html?id=6',
     linkReservar: 'reserva.html?id=6',
     linkDetalhes: 'livro.html?id=6',
@@ -88,7 +88,7 @@ const BOOKS = [
     categoria: 'Programacao',
     disponivel: true,
     descricao: 'A obra de referência em algoritmos e estruturas de dados usada em universidades de todo o mundo.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/81MNGKuzJcL._SY466_.jpg',
     linkEmprestar: 'emprestimo.html?id=7',
     linkReservar: 'reserva.html?id=7',
     linkDetalhes: 'livro.html?id=7',
@@ -101,7 +101,7 @@ const BOOKS = [
     categoria: 'Literatura',
     disponivel: false,
     descricao: 'A saga da família Buendía ao longo de sete gerações na fictícia cidade de Macondo.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/515cVYLIP9L._SY445_SX342_ML2_.jpg',
     linkEmprestar: 'emprestimo.html?id=8',
     linkReservar: 'reserva.html?id=8',
     linkDetalhes: 'livro.html?id=8',
@@ -114,7 +114,7 @@ const BOOKS = [
     categoria: 'Ciencias',
     disponivel: true,
     descricao: 'Uma exploração acessível dos grandes temas da cosmologia moderna: buracos negros, o Big Bang e a natureza do tempo.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/51FBILW8cWS._SY445_SX342_ML2_.jpg',
     linkEmprestar: 'emprestimo.html?id=9',
     linkReservar: 'reserva.html?id=9',
     linkDetalhes: 'livro.html?id=9',
@@ -127,7 +127,7 @@ const BOOKS = [
     categoria: 'Ficcao',
     disponivel: true,
     descricao: 'Uma distopia sombria onde o partido controla tudo, inclusive o pensamento, por meio do Grande Irmão.',
-    coverUrl: '',
+    coverUrl: 'https://m.media-amazon.com/images/I/51VXYaKO-sL._SY445_SX342_ML2_.jpg',
     linkEmprestar: 'emprestimo.html?id=10',
     linkReservar: 'reserva.html?id=10',
     linkDetalhes: 'livro.html?id=10',
@@ -200,9 +200,9 @@ function buildCard(book) {
 
   const badgeClass = book.disponivel ? 'badge--disponivel' : 'badge--indisponivel';
   const badgeText  = book.disponivel ? 'Disponível' : 'Indisponível';
-  const actionBtn  = book.disponivel
-    ? `<a href="${book.linkEmprestar}" class="btn btn--primary">Emprestar</a>`
-    : `<a href="${book.linkReservar}"  class="btn btn--outline">Reservar</a>`;
+  const actionBtn = book.disponivel
+  ? `<a href="${book.linkEmprestar}" class="btn btn--primary">Emprestar</a>`
+  : `<span class="book-card__status-indisponivel">Indisponível</span>`;
 
   card.innerHTML = `
     <a href="${book.linkDetalhes}" class="book-card__cover" aria-label="Ver detalhes de ${book.titulo}">
