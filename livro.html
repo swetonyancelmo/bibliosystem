@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhe do Livro — BiblioSystem</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/livro.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">BiblioSystem</a>
+    <nav class="navbar__nav">
+      <a href="index.html" class="navbar__link">Início</a>
+      <a href="emprestimos.html" class="navbar__link">Empréstimos</a>
+      <a href="livros.html" class="navbar__link" id="navLivros" style="display:none">Livros</a>
+      <a href="admin.html" class="navbar__link" id="navAdmin" style="display:none">Admin</a>
+    </nav>
+    <a href="perfil.html" class="navbar__avatar" id="navAvatar" aria-label="Perfil do usuário"></a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="main__inner">
+
+    <a href="index.html" class="voltar-link">← Voltar ao catálogo</a>
+
+    <div id="livroConteudo">
+      <p class="carregando">Carregando livro...</p>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/livros-data.js"></script>
+<script src="js/livro.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>
