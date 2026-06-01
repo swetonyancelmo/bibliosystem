@@ -1,0 +1,220 @@
+/* ============================================================
+   ADMIN PAINEL
+   ============================================================ */
+.main {
+  padding: 30px 24px;
+  background: #f1f5f9;
+  min-height: calc(100vh - 64px);
+}
+
+.main__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.page-header p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid #d1d5db;
+  background: white;
+  color: #374151;
+  transition: all 0.15s;
+}
+
+.tab-btn:hover {
+  border-color: #3B4DC8;
+  color: #3B4DC8;
+}
+
+.tab-btn.active {
+  background: #3B4DC8;
+  color: white;
+  border-color: #3B4DC8;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ── Card e tabela ── */
+.card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.admin-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.1s;
+}
+
+.admin-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-table td {
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+/* ── Botões de ação ── */
+.btn-aprovar,
+.btn-rejeitar,
+.btn-devolver {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+}
+
+.btn-aprovar {
+  background: #dcfce7;
+  color: #16a34a;
+  margin-right: 6px;
+}
+
+.btn-aprovar:hover {
+  background: #bbf7d0;
+}
+
+.btn-rejeitar {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-rejeitar:hover {
+  background: #fecaca;
+}
+
+.btn-devolver {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.btn-devolver:hover {
+  background: #c7d2fe;
+}
+
+/* ── Badges de status ── */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge--pendente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge--ativo {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* ── Estado vazio ── */
+.empty-state {
+  text-align: center;
+  padding: 50px 24px;
+  color: #94a3b8;
+}
+
+.empty-state p {
+  font-size: 1rem;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  .admin-table thead {
+    display: none;
+  }
+
+  .admin-table tbody tr {
+    display: block;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .admin-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border: none;
+  }
+
+  .admin-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+}

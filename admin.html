@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin — BiblioSystem</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">BiblioSystem</a>
+    <nav class="navbar__nav">
+      <a href="index.html"       class="navbar__link">Início</a>
+      <a href="emprestimos.html" class="navbar__link">Empréstimos</a>
+      <a href="livros.html"      class="navbar__link" id="navLivros" style="display:none">Livros</a>
+      <a href="admin.html"       class="navbar__link navbar__link--active" id="navAdmin" style="display:none">Admin</a>
+    </nav>
+    <a href="perfil.html" class="navbar__avatar" id="navAvatar" aria-label="Perfil"></a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="main__inner">
+
+    <div class="page-header">
+      <h1>Painel do Bibliotecário</h1>
+      <p>Gerencie as solicitações e os empréstimos ativos</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="pendentes">
+        Solicitações (<span id="count-pendentes">0</span>)
+      </button>
+      <button class="tab-btn" data-tab="ativos">
+        Ativos (<span id="count-ativos">0</span>)
+      </button>
+    </div>
+
+    <!-- Solicitações pendentes -->
+    <div class="tab-panel active" id="tab-pendentes">
+      <div class="card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Livro</th>
+              <th>Usuário</th>
+              <th>Data Solicitação</th>
+              <th>Devolução Prevista</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-pendentes"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Empréstimos ativos -->
+    <div class="tab-panel" id="tab-ativos">
+      <div class="card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Livro</th>
+              <th>Usuário</th>
+              <th>Data Aprovação</th>
+              <th>Devolução Prevista</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-ativos"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/admin.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>
