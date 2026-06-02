@@ -68,7 +68,7 @@ function buildCard(book) {
   var badgeClass  = book.disponivel ? 'badge--disponivel' : 'badge--indisponivel';
   var badgeText   = book.disponivel ? 'Disponível' : 'Indisponível';
   var actionBtn   = book.disponivel
-    ? '<a href="' + detalhesUrl + '" class="btn btn--primary">Emprestar</a>'
+    ? '<a href="' + detalhesUrl + '" class="btn btn--primary">Solicitar Empréstimo</a>'
     : '<span class="book-card__status-indisponivel">Indisponível</span>';
 
   card.innerHTML = [
